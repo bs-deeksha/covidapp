@@ -34,8 +34,8 @@ def load_df():
     start_time = time.time()
     # print('Establishing Snowflake Connection')
     # snow_eng=create_engine(URL(account = 'eb83910.central-india.azure',user = s.secrets['username'],password = s.secrets['password'],database = 'practice',schema = 'public',warehouse = 'practice'))
-    df_report=pd.read_sql_query("select country_region,case_type,sum(cases) as cases,month,to_char(to_date(month,'yyyy-mon'),'yyyy') as year from practice.public.covid_global_monthly group by 1,2,4,5 order by to_date(month,'yyyy-mon')",snow_eng)
-#     df_report=pd.read_sql_query("select * from practice.public.covid_global_report",snow_eng)
+#     df_report=pd.read_sql_query("select country_region,case_type,sum(cases) as cases,month,to_char(to_date(month,'yyyy-mon'),'yyyy') as year from practice.public.covid_global_monthly group by 1,2,4,5 order by to_date(month,'yyyy-mon')",snow_eng)
+    df_report=pd.read_sql_query("select * from practice.public.covid_global_report",snow_eng)
     # df_report=df_report.fillna(0)
     total_time = time.time() - start_time
     s.write(total_time)
